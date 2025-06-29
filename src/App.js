@@ -1,7 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-function App() {
+function Navbar({ scrollY }) {
+  return (
+    <nav className={`navbar ${scrollY > 100 ? 'navbar-visible' : ''}`}>
+      <div className="nav-content">
+        <Link to="/" className="nav-title" style={{ textDecoration: 'none' }}>KEBAB'S PRINTBED</Link>
+        <div className="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">Our Company</a>
+          <a href="#services">Services</a>
+          <Link to="/about-us">About Us</Link>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function AboutUs() {
+  return (
+    <div className="aboutus-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
+      <Navbar scrollY={101} />
+      <div style={{ paddingTop: '120px', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '2rem' }}>About Us</h1>
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+          {/* Founder */}
+          <div className="profile-card" style={{ background: 'var(--color-glass)', border: '1px solid var(--color-glass-border)', borderRadius: 16, padding: 32, minWidth: 260, maxWidth: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+            <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--color-secondary)', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48, color: 'var(--color-highlight)' }}>👤</div>
+            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', fontSize: 24, margin: 0 }}>Alex</h2>
+            <h3 style={{ color: 'var(--color-accent)', fontSize: 18, margin: '8px 0' }}>Founder</h3>
+            <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15 }}>Visionary behind Kebab's Printbed. Loves 3D printing and kebabs. Leads the team with passion and innovation.</p>
+          </div>
+          {/* Marketing */}
+          <div className="profile-card" style={{ background: 'var(--color-glass)', border: '1px solid var(--color-glass-border)', borderRadius: 16, padding: 32, minWidth: 260, maxWidth: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+            <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--color-secondary)', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48, color: 'var(--color-highlight)' }}>👩‍💼</div>
+            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', fontSize: 24, margin: 0 }}>Jamie</h2>
+            <h3 style={{ color: 'var(--color-accent)', fontSize: 18, margin: '8px 0' }}>Marketing</h3>
+            <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15 }}>Spreads the word and builds the brand. Social media wizard and customer connection expert.</p>
+          </div>
+          {/* Web Development */}
+          <div className="profile-card" style={{ background: 'var(--color-glass)', border: '1px solid var(--color-glass-border)', borderRadius: 16, padding: 32, minWidth: 260, maxWidth: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+            <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--color-secondary)', marginBottom: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48, color: 'var(--color-highlight)' }}>💻</div>
+            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', fontSize: 24, margin: 0 }}>Morgan</h2>
+            <h3 style={{ color: 'var(--color-accent)', fontSize: 18, margin: '8px 0' }}>Web Development</h3>
+            <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15 }}>Builds and maintains the website. Makes sure everything looks and works perfectly online.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MainApp() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -46,18 +98,7 @@ function App() {
       ></div>
       
       {/* Navbar */}
-      <nav className={`navbar ${scrollY > 100 ? 'navbar-visible' : ''}`}>
-        <div className="nav-content">
-          <h2 className="nav-title">KEBAB'S PRINTBED</h2>
-          <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#materials">Materials</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      </nav>
+      <Navbar scrollY={scrollY} />
 
       {/* Hero Section */}
       <section id="home" className="hero-section">
@@ -84,7 +125,7 @@ function App() {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="section-content">
-          <h2 className="section-title">About Our Company</h2>
+          <h2 className="section-title">Our Company</h2>
           <p className="section-description">
             We are a cutting-edge 3D printing company specializing in custom solutions for businesses and individuals. 
             Our state-of-the-art technology and expert team bring your ideas to life with precision and quality.
@@ -156,4 +197,13 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainApp />} />
+        <Route path="/about-us" element={<AboutUs />} />
+      </Routes>
+    </Router>
+  );
+}
