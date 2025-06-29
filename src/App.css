@@ -315,6 +315,7 @@ body {
   z-index: 2;
   background-color: #071E22;
   scroll-snap-align: center;
+  scroll-margin-top: 80px;
 }
 
 .services-grid {

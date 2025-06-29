@@ -113,7 +113,7 @@ function App() {
         <div className="section-content">
           <h2 className="section-title">Our Services</h2>
           <p className="section-description">
-            From rapid prototyping to production parts, we offer comprehensive 3D printing solutions.
+            From rapid prototyping to high-quality parts, we offer comprehensive 3D printing solutions.
           </p>
           <div className="services-grid">
             <div className="service-card">
@@ -128,10 +128,10 @@ function App() {
             </div>
             <div className="service-card">
               <div className="service-icon">🏭</div>
-              <h3>Production Parts</h3>
-              <p>High-volume production with consistent quality</p>
+              <h3>High-Quality Parts</h3>
+              <p>Precision manufacturing for end-use and functional parts</p>
               <ul className="service-features">
-                <li>Bulk pricing available</li>
+                <li>Consistent quality</li>
                 <li>Quality assurance</li>
                 <li>Fast production times</li>
               </ul>
@@ -151,36 +151,7 @@ function App() {
       </section>
 
       {/* Materials Section */}
-      <section id="materials" className="materials-section">
-        <div className="section-content">
-          <h2 className="section-title">Available Materials</h2>
-          <p className="section-description">
-            Choose from our wide range of high-quality 3D printing materials.
-          </p>
-          <div className="materials-grid">
-            <div className="material-card">
-              <h4>PLA</h4>
-              <p>Biodegradable, great for prototypes</p>
-              <span className="material-price">From $0.15/g</span>
-            </div>
-            <div className="material-card">
-              <h4>ABS</h4>
-              <p>Durable, heat resistant</p>
-              <span className="material-price">From $0.20/g</span>
-            </div>
-            <div className="material-card">
-              <h4>PETG</h4>
-              <p>Strong, chemical resistant</p>
-              <span className="material-price">From $0.25/g</span>
-            </div>
-            <div className="material-card">
-              <h4>TPU</h4>
-              <p>Flexible, rubber-like</p>
-              <span className="material-price">From $0.35/g</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ... existing code ... */}
     </div>
   );
 }
