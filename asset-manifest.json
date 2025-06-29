@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/kebabs-printbed-website/static/css/main.1ca0cc3f.css",
+    "main.js": "/kebabs-printbed-website/static/js/main.2045dd23.js",
+    "static/js/453.6dc48e0c.chunk.js": "/kebabs-printbed-website/static/js/453.6dc48e0c.chunk.js",
+    "index.html": "/kebabs-printbed-website/index.html",
+    "main.1ca0cc3f.css.map": "/kebabs-printbed-website/static/css/main.1ca0cc3f.css.map",
+    "main.2045dd23.js.map": "/kebabs-printbed-website/static/js/main.2045dd23.js.map",
+    "453.6dc48e0c.chunk.js.map": "/kebabs-printbed-website/static/js/453.6dc48e0c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ca0cc3f.css",
+    "static/js/main.2045dd23.js"
+  ]
+}
