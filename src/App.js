@@ -213,6 +213,28 @@ function Catalog() {
               <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15, marginTop: 8 }}>{p.desc}</p>
             </div>
           ))}
+          
+          {/* Suggest an idea card */}
+          <Link 
+            to="/contact" 
+            className="product-card"
+            style={{ 
+              background: 'var(--color-accent)', 
+              border: '1px solid var(--color-accent)', 
+              borderRadius: 16, 
+              padding: 24, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+              textDecoration: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <div style={{ width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, marginBottom: 16 }}>💡</div>
+            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-bg)', fontSize: 20, margin: 0 }}>Suggest an Idea</h2>
+            <p style={{ color: 'var(--color-bg)', textAlign: 'center', fontSize: 15, marginTop: 8, opacity: 0.9 }}>Have an idea for a new product? Let us know!</p>
+          </Link>
         </div>
       </div>
     </div>
