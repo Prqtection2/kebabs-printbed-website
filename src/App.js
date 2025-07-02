@@ -322,16 +322,16 @@ function MainApp() {
             <div className="feature-card">
               <h3>Browse Our Premade Products</h3>
               <p>Explore our collection of ready-to-print designs and products</p>
-              <button className="arrow-button">
+              <Link to="/catalog" className="arrow-button" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <span className="arrow">→</span>
-              </button>
+              </Link>
             </div>
             <div className="feature-card">
               <h3>Order a Custom Print</h3>
               <p>Get your unique designs printed with our custom printing service</p>
-              <button className="arrow-button">
+              <Link to="/order" className="arrow-button" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <span className="arrow">→</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
