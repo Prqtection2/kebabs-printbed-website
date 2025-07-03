@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/kebabs-printbed-website/static/css/main.bd3a6e96.css",
-    "main.js": "/kebabs-printbed-website/static/js/main.d435b658.js",
+    "main.css": "/kebabs-printbed-website/static/css/main.df51ab7a.css",
+    "main.js": "/kebabs-printbed-website/static/js/main.e3e503db.js",
     "static/js/453.6dc48e0c.chunk.js": "/kebabs-printbed-website/static/js/453.6dc48e0c.chunk.js",
     "index.html": "/kebabs-printbed-website/index.html",
-    "main.bd3a6e96.css.map": "/kebabs-printbed-website/static/css/main.bd3a6e96.css.map",
-    "main.d435b658.js.map": "/kebabs-printbed-website/static/js/main.d435b658.js.map",
+    "main.df51ab7a.css.map": "/kebabs-printbed-website/static/css/main.df51ab7a.css.map",
+    "main.e3e503db.js.map": "/kebabs-printbed-website/static/js/main.e3e503db.js.map",
     "453.6dc48e0c.chunk.js.map": "/kebabs-printbed-website/static/js/453.6dc48e0c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd3a6e96.css",
-    "static/js/main.d435b658.js"
+    "static/css/main.df51ab7a.css",
+    "static/js/main.e3e503db.js"
   ]
 }
