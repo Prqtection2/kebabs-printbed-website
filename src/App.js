@@ -506,7 +506,7 @@ function MainApp() {
           <p className="hero-subtitle">Professional 3D Printing Services</p>
           <div className="hero-stats">
             <div className="stat">
-              <span className="stat-number">500+</span>
+              <span className="stat-number">50+</span>
               <span className="stat-label">Projects Completed</span>
             </div>
             <div className="stat">
