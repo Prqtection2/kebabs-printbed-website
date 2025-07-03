@@ -1,8 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Navbar({ scrollY }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSectionClick = (sectionId) => {
+    if (location.pathname === '/') {
+      // Already on homepage, scroll to section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to homepage first, then scroll to section
+      navigate('/');
+      // Use setTimeout to ensure navigation completes before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <nav className={`navbar ${scrollY > 100 ? 'navbar-visible' : ''}`}>
       <div className="nav-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -10,8 +33,36 @@ function Navbar({ scrollY }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginLeft: 'auto' }}>
           <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             <Link to="/">Home</Link>
-            <a href="#about">Our Company</a>
-            <a href="#services">Services</a>
+            <button 
+              onClick={() => handleSectionClick('about')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                color: 'inherit', 
+                cursor: 'pointer', 
+                fontSize: 'inherit',
+                fontFamily: 'inherit',
+                padding: 0,
+                textDecoration: 'none'
+              }}
+            >
+              Our Company
+            </button>
+            <button 
+              onClick={() => handleSectionClick('services')}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                color: 'inherit', 
+                cursor: 'pointer', 
+                fontSize: 'inherit',
+                fontFamily: 'inherit',
+                padding: 0,
+                textDecoration: 'none'
+              }}
+            >
+              Services
+            </button>
             <Link to="/catalog">Catalog</Link>
             <Link to="/about-us">About Us</Link>
             <Link to="/contact">Contact</Link>
