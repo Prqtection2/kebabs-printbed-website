@@ -254,7 +254,7 @@ function Catalog() {
   return (
     <div className="catalog-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
       <Navbar scrollY={101} />
-      <div style={{ paddingTop: '120px', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '2rem' }}>Premade Products Catalog</h1>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem', width: '100%' }}>
           {products.map((p, i) => (
