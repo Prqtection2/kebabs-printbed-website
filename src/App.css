@@ -410,6 +410,13 @@ body {
   font-weight: bold;
 }
 
+/* Product Card Hover Effects */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px var(--color-glass-border-hover);
+  border-color: var(--color-glass-border-hover);
+}
+
 /* Materials Section */
 .materials-section {
   height: 100vh;

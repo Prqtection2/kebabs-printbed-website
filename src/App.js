@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 function Navbar({ scrollY }) {
   const location = useLocation();
@@ -258,11 +258,28 @@ function Catalog() {
         <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '2rem' }}>Premade Products Catalog</h1>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem', width: '100%' }}>
           {products.map((p, i) => (
-            <div key={i} className="product-card" style={{ background: 'var(--color-glass)', border: '1px solid var(--color-glass-border)', borderRadius: 16, padding: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+            <Link 
+              key={i} 
+              to={`/catalog-order?product=${encodeURIComponent(p.name)}&description=${encodeURIComponent(p.desc)}`}
+              className="product-card" 
+              style={{ 
+                background: 'var(--color-glass)', 
+                border: '1px solid var(--color-glass-border)', 
+                borderRadius: 16, 
+                padding: 24, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            >
               <img src={p.img} alt={p.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 12, marginBottom: 16 }} />
               <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', fontSize: 20, margin: 0 }}>{p.name}</h2>
               <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15, marginTop: 8 }}>{p.desc}</p>
-            </div>
+            </Link>
           ))}
           
           {/* Suggest an idea card */}
@@ -285,6 +302,149 @@ function Catalog() {
             <div style={{ width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, marginBottom: 16 }}>💡</div>
             <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-bg)', fontSize: 20, margin: 0 }}>Suggest an Idea</h2>
             <p style={{ color: 'var(--color-bg)', textAlign: 'center', fontSize: 15, marginTop: 8, opacity: 0.9 }}>Have an idea for a new product? Let us know!</p>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CatalogOrder() {
+  const [searchParams] = useSearchParams();
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  
+  const productName = searchParams.get('product') || 'Selected Product';
+  const productDescription = searchParams.get('description') || 'Product from catalog';
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const form = e.target;
+    const data = new FormData(form);
+    try {
+      const res = await fetch('https://formspree.io/f/mqabwrro', {
+        method: 'POST',
+        body: data,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setTimeout(() => navigate('/catalog'), 2000);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } catch {
+      setError('Something went wrong. Please try again.');
+    }
+  };
+
+  return (
+    <div className="catalog-order-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
+      <Navbar scrollY={101} />
+      <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '1rem' }}>Order Product</h1>
+        <h2 style={{ fontFamily: 'Koulen, cursive', fontSize: '1.5rem', color: 'var(--color-accent)', marginBottom: '2rem' }}>{productName}</h2>
+        
+        {submitted ? (
+          <div style={{ color: 'var(--color-highlight)', fontSize: 20, margin: '2rem 0', textAlign: 'center' }}>
+            Thank you for your order! We'll be reaching out shortly with pricing and availability.<br />
+            <span style={{ color: 'var(--color-accent)' }}>Redirecting back to catalog…</span>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
+            <input 
+              name="name" 
+              type="text" 
+              placeholder="Your Name" 
+              required 
+              style={{ 
+                padding: '0.8rem', 
+                borderRadius: 8, 
+                border: '1px solid var(--color-glass-border)', 
+                background: 'var(--color-glass)', 
+                color: 'var(--color-text)', 
+                fontSize: 16 
+              }} 
+            />
+            <input 
+              name="email" 
+              type="email" 
+              placeholder="Your Email" 
+              required 
+              style={{ 
+                padding: '0.8rem', 
+                borderRadius: 8, 
+                border: '1px solid var(--color-glass-border)', 
+                background: 'var(--color-glass)', 
+                color: 'var(--color-text)', 
+                fontSize: 16 
+              }} 
+            />
+            <input 
+              name="phone" 
+              type="tel" 
+              placeholder="Phone Number (optional)" 
+              style={{ 
+                padding: '0.8rem', 
+                borderRadius: 8, 
+                border: '1px solid var(--color-glass-border)', 
+                background: 'var(--color-glass)', 
+                color: 'var(--color-text)', 
+                fontSize: 16 
+              }} 
+            />
+            <textarea 
+              name="orderDetails" 
+              placeholder="Additional details or customization requests..."
+              rows={4}
+              defaultValue={`Product: ${productName}\nDescription: ${productDescription}\n\nAdditional requests: `}
+              style={{ 
+                padding: '0.8rem', 
+                borderRadius: 8, 
+                border: '1px solid var(--color-glass-border)', 
+                background: 'var(--color-glass)', 
+                color: 'var(--color-text)', 
+                fontSize: 16, 
+                resize: 'vertical' 
+              }} 
+            />
+            <button 
+              type="submit" 
+              style={{ 
+                padding: '0.8rem', 
+                borderRadius: 8, 
+                border: 'none', 
+                background: 'var(--color-accent)', 
+                color: 'var(--color-bg)', 
+                fontWeight: 700, 
+                fontSize: 16, 
+                cursor: 'pointer', 
+                transition: 'background 0.2s' 
+              }}
+            >
+              Submit Order Request
+            </button>
+            {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
+          </form>
+        )}
+        
+        <div style={{ textAlign: 'center', color: 'var(--color-highlight)', marginTop: '2rem' }}>
+          <p>We'll review your order and get back to you with pricing and availability!</p>
+          <Link 
+            to="/catalog" 
+            style={{ 
+              color: 'var(--color-accent)', 
+              textDecoration: 'none', 
+              fontWeight: 600,
+              display: 'inline-block',
+              marginTop: '1rem'
+            }}
+          >
+            ← Back to Catalog
           </Link>
         </div>
       </div>
@@ -445,6 +605,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/order" element={<OrderNow />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog-order" element={<CatalogOrder />} />
       </Routes>
     </Router>
   );
