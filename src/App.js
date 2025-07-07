@@ -198,13 +198,25 @@ function Contact() {
             Thank you! We'll be reaching out shortly.<br />Redirecting to homepage…
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
-            <input name="name" type="text" placeholder="Your Name" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
-            <input name="email" type="text" placeholder="Email or Phone Number" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
-            <textarea name="message" placeholder="Your Message" rows={5} required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16, resize: 'vertical' }} />
-            <button type="submit" style={{ padding: '0.8rem', borderRadius: 8, border: 'none', background: 'var(--color-accent)', color: 'var(--color-bg)', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'background 0.2s' }}>Send Message</button>
-            {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
-          </form>
+          <>
+            <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
+              <input name="name" type="text" placeholder="Your Name" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
+              <input name="email" type="text" placeholder="Email or Phone Number" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
+              <textarea name="message" placeholder="Your Message" rows={5} required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16, resize: 'vertical' }} />
+              <button type="submit" style={{ padding: '0.8rem', borderRadius: 8, border: 'none', background: 'var(--color-accent)', color: 'var(--color-bg)', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'background 0.2s' }}>Send Message</button>
+              {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
+            </form>
+            <p style={{ 
+              color: 'var(--color-text)', 
+              opacity: 0.8, 
+              fontSize: '0.9rem', 
+              textAlign: 'center',
+              marginBottom: '1.5rem',
+              fontStyle: 'italic'
+            }}>
+              We'll respond to your message within 2-4 business days.
+            </p>
+          </>
         )}
         <div style={{ textAlign: 'center', color: 'var(--color-highlight)' }}>
           <p>Email: <a href="mailto:Kebabsprintbed@gmail.com" style={{ color: 'var(--color-accent)' }}>Kebabsprintbed@gmail.com</a></p>
@@ -255,17 +267,26 @@ function OrderNow() {
             Thank you! We'll be reaching out shortly.<br />Redirecting to homepage…
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
-            <input name="name" type="text" placeholder="Your Name" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
-            <input name="email" type="text" placeholder="Email or Phone Number" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
-            <textarea name="orderDetails" placeholder="Describe your 3D print order (dimensions, material, etc.)" rows={5} required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16, resize: 'vertical' }} />
-            <button type="submit" style={{ padding: '0.8rem', borderRadius: 8, border: 'none', background: 'var(--color-accent)', color: 'var(--color-bg)', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'background 0.2s' }}>Submit Order</button>
-            {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
-          </form>
+          <>
+            <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
+              <input name="name" type="text" placeholder="Your Name" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
+              <input name="email" type="text" placeholder="Email or Phone Number" required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16 }} />
+              <textarea name="orderDetails" placeholder="Describe your 3D print order (dimensions, material, etc.)" rows={5} required style={{ padding: '0.8rem', borderRadius: 8, border: '1px solid var(--color-glass-border)', background: 'var(--color-glass)', color: 'var(--color-text)', fontSize: 16, resize: 'vertical' }} />
+              <button type="submit" style={{ padding: '0.8rem', borderRadius: 8, border: 'none', background: 'var(--color-accent)', color: 'var(--color-bg)', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'background 0.2s' }}>Submit Order</button>
+              {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
+            </form>
+            <p style={{ 
+              color: 'var(--color-text)', 
+              opacity: 0.8, 
+              fontSize: '0.9rem', 
+              textAlign: 'center',
+              marginBottom: '1.5rem',
+              fontStyle: 'italic'
+            }}>
+              We'll review your order and respond within 2-4 business days with pricing and availability.
+            </p>
+          </>
         )}
-        <div style={{ textAlign: 'center', color: 'var(--color-highlight)' }}>
-          <p>We'll review your order and get back to you with a quote!</p>
-        </div>
       </div>
     </div>
   );
