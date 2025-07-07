@@ -2,6 +2,55 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 
+// Modal Component
+function Modal({ isOpen, onClose, children }) {
+  if (!isOpen) return null;
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'rgba(0, 0, 0, 0.7)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000
+    }}>
+      <div style={{
+        background: 'var(--color-bg)',
+        padding: '2rem',
+        borderRadius: '16px',
+        maxWidth: '500px',
+        width: '90%',
+        maxHeight: '90vh',
+        overflow: 'auto',
+        position: 'relative',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.2)'
+      }}>
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '1rem',
+            right: '1rem',
+            background: 'none',
+            border: 'none',
+            fontSize: '1.5rem',
+            cursor: 'pointer',
+            color: 'var(--color-text)'
+          }}
+        >
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function Navbar({ scrollY }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -226,38 +275,59 @@ function Catalog() {
   // Example products (replace with real ones as needed)
   const products = [
     {
+      id: 1,
       name: 'Phone Stand',
       img: 'https://via.placeholder.com/120x120?text=Phone+Stand',
-      desc: 'A sturdy 3D printed phone stand for your desk.'
+      desc: 'A sturdy 3D printed phone stand for your desk.',
+      price: 14.99,
+      colors: ['Black', 'White', 'Blue', 'Red'],
+      addons: ['Non-slip base (+$2)', 'Cable management (+$3)']
     },
     {
+      id: 2,
       name: 'Keychain',
       img: 'https://via.placeholder.com/120x120?text=Keychain',
-      desc: 'Customizable keychain in various colors.'
+      desc: 'Customizable keychain in various colors.',
+      price: 9.99,
+      colors: ['Black', 'White', 'Green', 'Red'],
+      addons: ['Metal ring (+$1)', 'Name engraving (+$3)']
     },
     {
+      id: 3,
       name: 'Cable Organizer',
       img: 'https://via.placeholder.com/120x120?text=Cable+Org',
-      desc: 'Keep your cables tidy with this organizer.'
+      desc: 'Keep your cables tidy with this organizer.',
+      price: 12.99,
+      colors: ['Black', 'White', 'Gray'],
+      addons: ['Extra slots (+$2)', 'Wall mount (+$3)']
     },
     {
+      id: 4,
       name: 'Mini Planter',
       img: 'https://via.placeholder.com/120x120?text=Planter',
-      desc: 'A cute mini planter for succulents.'
+      desc: 'A cute mini planter for succulents.',
+      price: 16.99,
+      colors: ['White', 'Black', 'Green', 'Pink'],
+      addons: ['Drainage holes (+$1)', 'Saucer (+$3)']
     },
     {
+      id: 5,
       name: 'SD Card Holder',
       img: 'https://via.placeholder.com/120x120?text=SD+Holder',
-      desc: 'Store your SD cards safely and neatly.'
+      desc: 'Store your SD cards safely and neatly.',
+      price: 11.99,
+      colors: ['Black', 'White', 'Blue'],
+      addons: ['Extra slots (+$2)', 'Dust cover (+$3)']
     },
   ];
+
   return (
     <div className="catalog-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
       <Navbar scrollY={101} />
       <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '2rem' }}>Premade Products Catalog</h1>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem', width: '100%' }}>
-          {/* Suggest an idea card - moved to the beginning */}
+          {/* Suggest an idea card - at the beginning */}
           <Link 
             to="/contact" 
             className="product-card"
@@ -278,11 +348,11 @@ function Catalog() {
             <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-bg)', fontSize: 20, margin: 0 }}>Suggest an Idea</h2>
             <p style={{ color: 'var(--color-bg)', textAlign: 'center', fontSize: 15, marginTop: 8, opacity: 0.9 }}>Have an idea for a new product? Let us know!</p>
           </Link>
-          
-          {products.map((p, i) => (
+
+          {products.map((p) => (
             <Link 
-              key={i} 
-              to={`/catalog-order?product=${encodeURIComponent(p.name)}&description=${encodeURIComponent(p.desc)}`}
+              key={p.id} 
+              to={`/product/${p.id}`}
               className="product-card" 
               style={{ 
                 background: 'var(--color-glass)', 
@@ -301,6 +371,7 @@ function Catalog() {
               <img src={p.img} alt={p.name} style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 12, marginBottom: 16 }} />
               <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', fontSize: 20, margin: 0 }}>{p.name}</h2>
               <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15, marginTop: 8 }}>{p.desc}</p>
+              <p style={{ color: 'var(--color-accent)', fontSize: 18, fontWeight: 'bold', marginTop: 8 }}>${p.price.toFixed(2)}</p>
             </Link>
           ))}
         </div>
@@ -309,30 +380,99 @@ function Catalog() {
   );
 }
 
-function CatalogOrder() {
-  const [searchParams] = useSearchParams();
+function ProductDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedAddons, setSelectedAddons] = useState([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    contact: '',
+  });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  
-  const productName = searchParams.get('product') || 'Selected Product';
-  const productDescription = searchParams.get('description') || 'Product from catalog';
-  
+
+  // Example products (this should match the products in Catalog component)
+  const products = [
+    {
+      id: 1,
+      name: 'Phone Stand',
+      img: 'https://via.placeholder.com/400x400?text=Phone+Stand',
+      desc: 'A sturdy 3D printed phone stand for your desk.',
+      price: 14.99,
+      colors: ['Black', 'White', 'Blue', 'Red'],
+      addons: ['Non-slip base (+$2)', 'Cable management (+$3)']
+    },
+    {
+      id: 2,
+      name: 'Keychain',
+      img: 'https://via.placeholder.com/400x400?text=Keychain',
+      desc: 'Customizable keychain in various colors.',
+      price: 9.99,
+      colors: ['Black', 'White', 'Green', 'Red'],
+      addons: ['Metal ring (+$1)', 'Name engraving (+$3)']
+    },
+    {
+      id: 3,
+      name: 'Cable Organizer',
+      img: 'https://via.placeholder.com/400x400?text=Cable+Org',
+      desc: 'Keep your cables tidy with this organizer.',
+      price: 12.99,
+      colors: ['Black', 'White', 'Gray'],
+      addons: ['Extra slots (+$2)', 'Wall mount (+$3)']
+    },
+    {
+      id: 4,
+      name: 'Mini Planter',
+      img: 'https://via.placeholder.com/400x400?text=Planter',
+      desc: 'A cute mini planter for succulents.',
+      price: 16.99,
+      colors: ['White', 'Black', 'Green', 'Pink'],
+      addons: ['Drainage holes (+$1)', 'Saucer (+$3)']
+    },
+    {
+      id: 5,
+      name: 'SD Card Holder',
+      img: 'https://via.placeholder.com/400x400?text=SD+Holder',
+      desc: 'Store your SD cards safely and neatly.',
+      price: 11.99,
+      colors: ['Black', 'White', 'Blue'],
+      addons: ['Extra slots (+$2)', 'Dust cover (+$3)']
+    },
+  ];
+
+  const product = products.find(p => p.id === parseInt(id));
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    const form = e.target;
-    const data = new FormData(form);
+    
+    const orderDetails = {
+      ...formData,
+      product: product.name,
+      color: selectedColor,
+      addons: selectedAddons,
+      totalPrice: calculateTotal()
+    };
+
     try {
       const res = await fetch('https://formspree.io/f/mqabwrro', {
         method: 'POST',
-        body: data,
+        body: JSON.stringify(orderDetails),
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
       });
+      
       if (res.ok) {
         setSubmitted(true);
+        setIsModalOpen(false);
         setTimeout(() => navigate('/catalog'), 2000);
       } else {
         setError('Something went wrong. Please try again.');
@@ -342,111 +482,253 @@ function CatalogOrder() {
     }
   };
 
+  const calculateTotal = () => {
+    let total = product.price;
+    selectedAddons.forEach(addon => {
+      const price = parseFloat(addon.match(/\$(\d+)/)[1]);
+      total += price;
+    });
+    return total.toFixed(2);
+  };
+
   return (
-    <div className="catalog-order-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
+    <div className="product-detail-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
       <Navbar scrollY={101} />
-      <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 600, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '1rem' }}>Order Product</h1>
-        <h2 style={{ fontFamily: 'Koulen, cursive', fontSize: '1.5rem', color: 'var(--color-accent)', marginBottom: '2rem' }}>{productName}</h2>
-        
-        {submitted ? (
-          <div style={{ color: 'var(--color-highlight)', fontSize: 20, margin: '2rem 0', textAlign: 'center' }}>
-            Thank you for your order! We'll be reaching out shortly with pricing and availability.<br />
-            <span style={{ color: 'var(--color-accent)' }}>Redirecting back to catalog…</span>
+      <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto' }}>
+        {submitted && (
+          <div style={{ 
+            position: 'fixed', 
+            top: '50%', 
+            left: '50%', 
+            transform: 'translate(-50%, -50%)', 
+            background: 'var(--color-glass)', 
+            padding: '2rem', 
+            borderRadius: '16px',
+            textAlign: 'center',
+            zIndex: 1000
+          }}>
+            <h2 style={{ color: 'var(--color-highlight)' }}>Thank you for your order!</h2>
+            <p>We'll be reaching out shortly with final details.</p>
+            <p style={{ color: 'var(--color-accent)' }}>Redirecting back to catalog...</p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
-            <input 
-              name="name" 
-              type="text" 
-              placeholder="Your Name" 
-              required 
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: 8, 
-                border: '1px solid var(--color-glass-border)', 
-                background: 'var(--color-glass)', 
-                color: 'var(--color-text)', 
-                fontSize: 16 
-              }} 
-            />
-            <input 
-              name="email" 
-              type="email" 
-              placeholder="Your Email" 
-              required 
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: 8, 
-                border: '1px solid var(--color-glass-border)', 
-                background: 'var(--color-glass)', 
-                color: 'var(--color-text)', 
-                fontSize: 16 
-              }} 
-            />
-            <input 
-              name="phone" 
-              type="tel" 
-              placeholder="Phone Number (optional)" 
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: 8, 
-                border: '1px solid var(--color-glass-border)', 
-                background: 'var(--color-glass)', 
-                color: 'var(--color-text)', 
-                fontSize: 16 
-              }} 
-            />
-            <textarea 
-              name="orderDetails" 
-              placeholder="Additional details or customization requests..."
-              rows={4}
-              defaultValue={`Product: ${productName}\nDescription: ${productDescription}\n\nAdditional requests: `}
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: 8, 
-                border: '1px solid var(--color-glass-border)', 
-                background: 'var(--color-glass)', 
-                color: 'var(--color-text)', 
-                fontSize: 16, 
-                resize: 'vertical' 
-              }} 
-            />
-            <button 
-              type="submit" 
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: 8, 
-                border: 'none', 
-                background: 'var(--color-accent)', 
-                color: 'var(--color-bg)', 
-                fontWeight: 700, 
-                fontSize: 16, 
-                cursor: 'pointer', 
-                transition: 'background 0.2s' 
-              }}
-            >
-              Submit Order Request
-            </button>
-            {error && <div style={{ color: 'var(--color-danger)', marginTop: 8 }}>{error}</div>}
-          </form>
         )}
         
-        <div style={{ textAlign: 'center', color: 'var(--color-highlight)', marginTop: '2rem' }}>
-          <p>We'll review your order and get back to you with pricing and availability!</p>
-          <Link 
-            to="/catalog" 
-            style={{ 
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1fr 1fr', 
+          gap: '4rem',
+          padding: '2rem'
+        }}>
+          {/* Left side - Image */}
+          <div style={{ 
+            background: 'var(--color-glass)', 
+            borderRadius: '16px', 
+            padding: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <img 
+              src={product.img} 
+              alt={product.name} 
+              style={{ 
+                width: '100%',
+                maxWidth: '400px',
+                height: 'auto',
+                borderRadius: '8px'
+              }} 
+            />
+          </div>
+
+          {/* Right side - Product Info */}
+          <div>
+            <h1 style={{ 
+              fontFamily: 'Koulen, cursive', 
+              fontSize: '2.5rem', 
+              color: 'var(--color-highlight)', 
+              marginBottom: '1rem' 
+            }}>
+              {product.name}
+            </h1>
+            <p style={{ 
+              fontSize: '1.2rem', 
+              color: 'var(--color-text)', 
+              marginBottom: '2rem' 
+            }}>
+              {product.desc}
+            </p>
+            <p style={{ 
+              fontSize: '2rem', 
               color: 'var(--color-accent)', 
-              textDecoration: 'none', 
-              fontWeight: 600,
-              display: 'inline-block',
-              marginTop: '1rem'
-            }}
-          >
-            ← Back to Catalog
-          </Link>
+              fontWeight: 'bold', 
+              marginBottom: '2rem' 
+            }}>
+              ${product.price.toFixed(2)}
+            </p>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h3 style={{ color: 'var(--color-highlight)', marginBottom: '1rem' }}>Available Colors:</h3>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                {product.colors.map(color => (
+                  <div key={color} style={{ color: 'var(--color-text)' }}>{color}</div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <h3 style={{ color: 'var(--color-highlight)', marginBottom: '1rem' }}>Optional Add-ons:</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {product.addons.map(addon => (
+                  <div key={addon} style={{ color: 'var(--color-text)' }}>{addon}</div>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              style={{
+                padding: '1rem 2rem',
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                background: 'var(--color-accent)',
+                color: 'var(--color-bg)',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                width: '100%',
+                maxWidth: '300px'
+              }}
+            >
+              Order Now
+            </button>
+          </div>
         </div>
+
+        {/* Order Modal */}
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-highlight)', marginBottom: '1.5rem' }}>
+            Customize Your Order
+          </h2>
+          
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-highlight)' }}>
+                Your Name:
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--color-glass-border)',
+                  background: 'var(--color-glass)',
+                  color: 'var(--color-text)'
+                }}
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-highlight)' }}>
+                Email or Phone Number:
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.contact}
+                onChange={(e) => setFormData({...formData, contact: e.target.value})}
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--color-glass-border)',
+                  background: 'var(--color-glass)',
+                  color: 'var(--color-text)'
+                }}
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-highlight)' }}>
+                Select Color:
+              </label>
+              <select
+                value={selectedColor}
+                onChange={(e) => setSelectedColor(e.target.value)}
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.8rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--color-glass-border)',
+                  background: 'var(--color-glass)',
+                  color: 'var(--color-text)'
+                }}
+              >
+                <option value="">Choose a color</option>
+                {product.colors.map(color => (
+                  <option key={color} value={color}>{color}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-highlight)' }}>
+                Add-ons (Optional):
+              </label>
+              {product.addons.map(addon => (
+                <div key={addon} style={{ marginBottom: '0.5rem' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={selectedAddons.includes(addon)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedAddons([...selectedAddons, addon]);
+                        } else {
+                          setSelectedAddons(selectedAddons.filter(a => a !== addon));
+                        }
+                      }}
+                    />
+                    {addon}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: '1rem', padding: '1rem', background: 'var(--color-glass)', borderRadius: '8px' }}>
+              <p style={{ color: 'var(--color-highlight)', fontSize: '1.2rem' }}>
+                Total Price: ${calculateTotal()}
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              style={{
+                marginTop: '1rem',
+                padding: '1rem',
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                background: 'var(--color-accent)',
+                color: 'var(--color-bg)',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer'
+              }}
+            >
+              Place Order
+            </button>
+
+            {error && (
+              <p style={{ color: 'var(--color-danger)', marginTop: '1rem' }}>
+                {error}
+              </p>
+            )}
+          </form>
+        </Modal>
       </div>
     </div>
   );
@@ -605,7 +887,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/order" element={<OrderNow />} />
         <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog-order" element={<CatalogOrder />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
     </Router>
   );
