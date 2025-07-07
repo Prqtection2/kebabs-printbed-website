@@ -257,6 +257,28 @@ function Catalog() {
       <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h1 style={{ fontFamily: 'Koulen, cursive', fontSize: '3rem', color: 'var(--color-highlight)', marginBottom: '2rem' }}>Premade Products Catalog</h1>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem', width: '100%' }}>
+          {/* Suggest an idea card - moved to the beginning */}
+          <Link 
+            to="/contact" 
+            className="product-card"
+            style={{ 
+              background: 'var(--color-accent)', 
+              border: '1px solid var(--color-accent)', 
+              borderRadius: 16, 
+              padding: 24, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+              textDecoration: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <div style={{ width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, marginBottom: 16 }}>💡</div>
+            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-bg)', fontSize: 20, margin: 0 }}>Suggest an Idea</h2>
+            <p style={{ color: 'var(--color-bg)', textAlign: 'center', fontSize: 15, marginTop: 8, opacity: 0.9 }}>Have an idea for a new product? Let us know!</p>
+          </Link>
+          
           {products.map((p, i) => (
             <Link 
               key={i} 
@@ -281,28 +303,6 @@ function Catalog() {
               <p style={{ color: 'var(--color-text)', textAlign: 'center', fontSize: 15, marginTop: 8 }}>{p.desc}</p>
             </Link>
           ))}
-          
-          {/* Suggest an idea card */}
-          <Link 
-            to="/contact" 
-            className="product-card"
-            style={{ 
-              background: 'var(--color-accent)', 
-              border: '1px solid var(--color-accent)', 
-              borderRadius: 16, 
-              padding: 24, 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-              textDecoration: 'none',
-              cursor: 'pointer'
-            }}
-          >
-            <div style={{ width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, marginBottom: 16 }}>💡</div>
-            <h2 style={{ fontFamily: 'Koulen, cursive', color: 'var(--color-bg)', fontSize: 20, margin: 0 }}>Suggest an Idea</h2>
-            <p style={{ color: 'var(--color-bg)', textAlign: 'center', fontSize: 15, marginTop: 8, opacity: 0.9 }}>Have an idea for a new product? Let us know!</p>
-          </Link>
         </div>
       </div>
     </div>
