@@ -125,6 +125,182 @@ function Navbar({ scrollY }) {
   );
 }
 
+function Footer() {
+  return (
+    <footer style={{
+      background: 'var(--color-glass)',
+      borderTop: '1px solid var(--color-glass-border)',
+      padding: '3rem 0',
+      marginTop: 'auto'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 2rem',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: '2rem',
+        justifyContent: 'space-between'
+      }}>
+        {/* Company Info */}
+        <div style={{ maxWidth: '300px' }}>
+          <h3 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            color: 'var(--color-highlight)', 
+            fontSize: '1.5rem', 
+            marginBottom: '1rem' 
+          }}>
+            KEBAB'S PRINTBED
+          </h3>
+          <p style={{ color: 'var(--color-text)', marginBottom: '1rem' }}>
+            Professional 3D printing services in Pearland, TX. Quality prints, custom designs, and excellent customer service.
+          </p>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <a 
+              href="https://facebook.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'var(--color-accent)', fontSize: '1.5rem', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--color-highlight)'}
+              onMouseLeave={e => e.target.style.color = 'var(--color-accent)'}
+            >
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'var(--color-accent)', fontSize: '1.5rem', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--color-highlight)'}
+              onMouseLeave={e => e.target.style.color = 'var(--color-accent)'}
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a 
+              href="https://twitter.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'var(--color-accent)', fontSize: '1.5rem', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--color-highlight)'}
+              onMouseLeave={e => e.target.style.color = 'var(--color-accent)'}
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            color: 'var(--color-highlight)', 
+            fontSize: '1.5rem', 
+            marginBottom: '1rem' 
+          }}>
+            Quick Links
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <Link to="/" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Home</Link>
+            <Link to="/catalog" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Products</Link>
+            <Link to="/about-us" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>About Us</Link>
+            <Link to="/contact" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Contact</Link>
+            <Link to="/order" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>Custom Orders</Link>
+          </div>
+        </div>
+
+        {/* Support */}
+        <div>
+          <h3 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            color: 'var(--color-highlight)', 
+            fontSize: '1.5rem', 
+            marginBottom: '1rem' 
+          }}>
+            Support
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <p style={{ color: 'var(--color-text)' }}>
+              <i className="far fa-envelope" style={{ marginRight: '0.5rem', width: '20px' }}></i>
+              <a href="mailto:Kebabsprintbed@gmail.com" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>
+                Kebabsprintbed@gmail.com
+              </a>
+            </p>
+            <p style={{ color: 'var(--color-text)' }}>
+              <i className="fas fa-phone" style={{ marginRight: '0.5rem', width: '20px' }}></i>
+              <a href="tel:+18327367551" style={{ color: 'var(--color-accent)', textDecoration: 'none' }}>
+                +1 (832) 736-7551
+              </a>
+            </p>
+            <p style={{ color: 'var(--color-text)' }}>
+              <i className="fas fa-map-marker-alt" style={{ marginRight: '0.5rem', width: '20px' }}></i>
+              Location: Pearland, TX, US
+            </p>
+            <p style={{ color: 'var(--color-text)' }}>
+              <i className="far fa-clock" style={{ marginRight: '0.5rem', width: '20px' }}></i>
+              Hours: Mon-Fri 9AM-5PM CST
+            </p>
+          </div>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h3 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            color: 'var(--color-highlight)', 
+            fontSize: '1.5rem', 
+            marginBottom: '1rem' 
+          }}>
+            Stay Updated
+          </h3>
+          <p style={{ color: 'var(--color-text)', marginBottom: '1rem' }}>
+            Subscribe to our newsletter for updates and special offers!
+          </p>
+          <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <input 
+              type="email" 
+              placeholder="Enter your email"
+              style={{
+                padding: '0.5rem',
+                borderRadius: '8px',
+                border: '1px solid var(--color-glass-border)',
+                background: 'var(--color-glass)',
+                color: 'var(--color-text)',
+                width: '100%'
+              }}
+            />
+            <button 
+              type="submit"
+              style={{
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                border: 'none',
+                background: 'var(--color-accent)',
+                color: 'var(--color-bg)',
+                cursor: 'pointer',
+                width: '100%'
+              }}
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div style={{
+        borderTop: '1px solid var(--color-glass-border)',
+        marginTop: '2rem',
+        paddingTop: '2rem',
+        textAlign: 'center',
+        color: 'var(--color-text)',
+        opacity: 0.8
+      }}>
+        <p>© {new Date().getFullYear()} KEBAB'S PRINTBED. All rights reserved.</p>
+      </div>
+    </footer>
+  );
+}
+
 function AboutUs() {
   return (
     <div className="aboutus-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
@@ -155,6 +331,7 @@ function AboutUs() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -224,6 +401,7 @@ function Contact() {
           <p>Location: Pearland, TX, US</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -288,6 +466,7 @@ function OrderNow() {
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
@@ -397,6 +576,7 @@ function Catalog() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -819,6 +999,7 @@ function ProductDetail() {
           </form>
         </Modal>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -842,7 +1023,7 @@ function MainApp() {
   const lightSourceY = Math.max(0, 100 - (limitedScrollY / 8)); // Slower movement
 
   return (
-    <div className="app">
+    <div className="app" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Radial Rays Background */}
       <div className="rainbow-rays">
         {[...Array(100)].map((_, i) => (
@@ -963,6 +1144,7 @@ function MainApp() {
 
       {/* Materials Section */}
       {/* ... existing code ... */}
+      <Footer />
     </div>
   );
 }
