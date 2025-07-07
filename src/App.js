@@ -385,7 +385,9 @@ function ProductDetail() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState('');
+  const [otherColor, setOtherColor] = useState('');
   const [selectedAddons, setSelectedAddons] = useState([]);
+  const [otherAddon, setOtherAddon] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
@@ -455,8 +457,8 @@ function ProductDetail() {
     const orderDetails = {
       ...formData,
       product: product.name,
-      color: selectedColor,
-      addons: selectedAddons,
+      color: selectedColor === 'Other' ? otherColor : selectedColor,
+      addons: [...selectedAddons, otherAddon].filter(Boolean),
       totalPrice: calculateTotal()
     };
 
@@ -485,8 +487,11 @@ function ProductDetail() {
   const calculateTotal = () => {
     let total = product.price;
     selectedAddons.forEach(addon => {
-      const price = parseFloat(addon.match(/\$(\d+)/)[1]);
-      total += price;
+      const priceMatch = addon.match(/\$(\d+)/);
+      if (priceMatch) {
+        const price = parseFloat(priceMatch[1]);
+        total += price;
+      }
     });
     return total.toFixed(2);
   };
@@ -494,6 +499,31 @@ function ProductDetail() {
   return (
     <div className="product-detail-page" style={{ minHeight: '100vh', background: 'var(--color-bg)', color: 'var(--color-text)' }}>
       <Navbar scrollY={101} />
+      
+      {/* Back Button */}
+      <button
+        onClick={() => navigate('/catalog')}
+        style={{
+          position: 'fixed',
+          top: '120px',
+          left: '2rem',
+          padding: '0.8rem 1.2rem',
+          background: 'var(--color-glass)',
+          border: '1px solid var(--color-glass-border)',
+          borderRadius: '8px',
+          color: 'var(--color-text)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          zIndex: 10,
+          transition: 'all 0.2s ease'
+        }}
+      >
+        ← Back to Catalog
+      </button>
+
       <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto' }}>
         {submitted && (
           <div style={{ 
@@ -655,24 +685,43 @@ function ProductDetail() {
               <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-highlight)' }}>
                 Select Color:
               </label>
-              <select
-                value={selectedColor}
-                onChange={(e) => setSelectedColor(e.target.value)}
-                required
-                style={{
-                  width: '100%',
-                  padding: '0.8rem',
-                  borderRadius: '8px',
-                  border: '1px solid var(--color-glass-border)',
-                  background: 'var(--color-glass)',
-                  color: 'var(--color-text)'
-                }}
-              >
-                <option value="">Choose a color</option>
-                {product.colors.map(color => (
-                  <option key={color} value={color}>{color}</option>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                {[...product.colors, 'Other'].map(color => (
+                  <button
+                    key={color}
+                    type="button"
+                    onClick={() => setSelectedColor(color)}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      borderRadius: '8px',
+                      border: selectedColor === color ? '2px solid var(--color-accent)' : '1px solid var(--color-glass-border)',
+                      background: 'var(--color-glass)',
+                      color: 'var(--color-text)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {color}
+                  </button>
                 ))}
-              </select>
+              </div>
+              {selectedColor === 'Other' && (
+                <input
+                  type="text"
+                  value={otherColor}
+                  onChange={(e) => setOtherColor(e.target.value)}
+                  placeholder="Enter custom color"
+                  required={selectedColor === 'Other'}
+                  style={{
+                    width: '100%',
+                    padding: '0.8rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--color-glass-border)',
+                    background: 'var(--color-glass)',
+                    color: 'var(--color-text)'
+                  }}
+                />
+              )}
             </div>
 
             <div>
@@ -697,6 +746,25 @@ function ProductDetail() {
                   </label>
                 </div>
               ))}
+              <div style={{ marginTop: '0.5rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--color-text)' }}>
+                  Other Add-on (Optional):
+                </label>
+                <input
+                  type="text"
+                  value={otherAddon}
+                  onChange={(e) => setOtherAddon(e.target.value)}
+                  placeholder="Enter custom add-on request"
+                  style={{
+                    width: '100%',
+                    padding: '0.8rem',
+                    borderRadius: '8px',
+                    border: '1px solid var(--color-glass-border)',
+                    background: 'var(--color-glass)',
+                    color: 'var(--color-text)'
+                  }}
+                />
+              </div>
             </div>
 
             <div style={{ marginTop: '1rem', padding: '1rem', background: 'var(--color-glass)', borderRadius: '8px' }}>
