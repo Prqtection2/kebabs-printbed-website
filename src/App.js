@@ -212,16 +212,6 @@ function Footer() {
             >
               <i className="fab fa-instagram"></i>
             </a>
-            <a 
-              href="https://twitter.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ color: 'var(--color-accent)', fontSize: '1.5rem', transition: 'color 0.2s' }}
-              onMouseEnter={e => e.target.style.color = 'var(--color-highlight)'}
-              onMouseLeave={e => e.target.style.color = 'var(--color-accent)'}
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
           </div>
         </div>
 
@@ -270,10 +260,6 @@ function Footer() {
             <p style={{ color: 'var(--color-text)' }}>
               <i className="fas fa-map-marker-alt" style={{ marginRight: '0.5rem', width: '20px' }}></i>
               Location: Pearland, TX, US
-            </p>
-            <p style={{ color: 'var(--color-text)' }}>
-              <i className="far fa-clock" style={{ marginRight: '0.5rem', width: '20px' }}></i>
-              Hours: Mon-Fri 9AM-5PM CST
             </p>
           </div>
         </div>
@@ -1306,8 +1292,8 @@ function MainApp() {
               <span className="stat-label">Products Delivered</span>
             </div>
             <div className="stat">
-              <span className="stat-number">24hr</span>
-              <span className="stat-label">Fast Turnaround</span>
+              <span className="stat-number">24+</span>
+              <span className="stat-label">Colors Available</span>
             </div>
             <div className="stat">
               <span className="stat-number">15+</span>
