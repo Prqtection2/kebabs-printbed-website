@@ -1303,7 +1303,7 @@ function MainApp() {
           <div className="hero-stats">
             <div className="stat">
               <span className="stat-number">50+</span>
-              <span className="stat-label">Projects Completed</span>
+              <span className="stat-label">Products Delivered</span>
             </div>
             <div className="stat">
               <span className="stat-number">24hr</span>
