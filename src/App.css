@@ -1,10 +1,10 @@
 :root {
   --color-bg: #000000;
-  --color-accent: #FF8600;
+  --color-accent: #ff8600;
   --color-secondary: #868784;
-  --color-highlight: #FFFFFF;
-  --color-danger: #FF8600;
-  --color-text: #FFFFFF;
+  --color-highlight: #ffffff;
+  --color-danger: #ff8600;
+  --color-text: #ffffff;
   --color-glass: rgba(255, 134, 0, 0.1);
   --color-glass-border: rgba(255, 134, 0, 0.2);
   --color-glass-border-hover: rgba(255, 134, 0, 0.4);
@@ -19,7 +19,7 @@
   --color-spotlight-6: rgba(255, 134, 0, 0.01);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Inter:wght@300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -33,7 +33,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow-x: hidden;
@@ -60,10 +60,12 @@ body {
   position: absolute;
   width: 1px;
   height: 300vh;
-  background: linear-gradient(to bottom,
-      var(--color-ray) 0%,
-      var(--color-ray-mid) 50%,
-      var(--color-ray-end) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--color-ray) 0%,
+    var(--color-ray-mid) 50%,
+    var(--color-ray-end) 100%
+  );
   transform-origin: var(--light-x, 100%) var(--light-y, 0%);
   transform: rotate(calc(var(--angle) * 1deg));
   opacity: 0.4;
@@ -78,14 +80,16 @@ body {
   width: 1600px;
   height: 1600px;
   z-index: 0;
-  background: radial-gradient(circle,
-      var(--color-spotlight-1) 0%,
-      var(--color-spotlight-2) 20%,
-      var(--color-spotlight-3) 40%,
-      var(--color-spotlight-4) 60%,
-      var(--color-spotlight-5) 80%,
-      var(--color-spotlight-6) 90%,
-      transparent 100%);
+  background: radial-gradient(
+    circle,
+    var(--color-spotlight-1) 0%,
+    var(--color-spotlight-2) 20%,
+    var(--color-spotlight-3) 40%,
+    var(--color-spotlight-4) 60%,
+    var(--color-spotlight-5) 80%,
+    var(--color-spotlight-6) 90%,
+    transparent 100%
+  );
   border-radius: 50%;
   pointer-events: none;
   transition: all 0.1s ease-out;
@@ -121,7 +125,7 @@ body {
 .nav-title {
   font-size: 1.5rem;
   color: var(--color-highlight);
-  font-family: 'Koulen', cursive;
+  font-family: "Koulen", cursive;
   font-weight: 400;
 }
 
@@ -133,7 +137,7 @@ body {
 .nav-links a {
   color: var(--color-highlight);
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.3s ease;
@@ -163,7 +167,7 @@ body {
   font-size: 8rem;
   font-weight: 400;
   color: var(--color-highlight);
-  font-family: 'Koulen', cursive;
+  font-family: "Koulen", cursive;
   letter-spacing: 0.1em;
   line-height: 1;
   text-shadow: 0 0 20px rgba(255, 134, 0, 0.5);
@@ -173,7 +177,7 @@ body {
 .hero-subtitle {
   font-size: 1.5rem;
   color: var(--color-highlight);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 300;
   margin-bottom: 3rem;
   letter-spacing: 0.1em;
@@ -201,13 +205,13 @@ body {
   font-size: 2rem;
   color: var(--color-highlight);
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .stat-label {
   font-size: 0.9rem;
   color: var(--color-highlight);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   text-align: center;
   margin-top: 0.5rem;
@@ -233,8 +237,8 @@ body {
 
 .section-title {
   font-size: 3rem;
-  color: #F4C095;
-  font-family: 'Koulen', cursive;
+  color: #f4c095;
+  font-family: "Koulen", cursive;
   font-weight: 400;
   margin-bottom: 1.5rem;
   text-shadow: 0 0 20px rgba(244, 192, 149, 0.5);
@@ -248,7 +252,7 @@ body {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
 }
 
@@ -286,13 +290,13 @@ body {
   font-size: 1.3rem;
   color: var(--color-highlight);
   margin-bottom: 0.8rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
 }
 
 .feature-card p {
   color: var(--color-text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.5;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
@@ -374,13 +378,13 @@ body {
   font-size: 1.5rem;
   color: var(--color-highlight);
   margin-bottom: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
 }
 
 .service-card p {
   color: var(--color-highlight);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.5;
   margin-bottom: 1.5rem;
   font-weight: 400;
@@ -394,7 +398,7 @@ body {
 
 .service-features li {
   color: var(--color-accent);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin-bottom: 0.5rem;
   padding-left: 1rem;
   position: relative;
@@ -460,13 +464,13 @@ body {
   font-size: 1.3rem;
   color: var(--color-highlight);
   margin-bottom: 0.5rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
 }
 
 .material-card p {
   color: var(--color-text);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.4;
   margin-bottom: 1rem;
   font-size: 0.9rem;
@@ -476,7 +480,7 @@ body {
 .material-price {
   color: #679289;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
 }
 
@@ -525,5 +529,154 @@ body {
 
   .section-title {
     font-size: 2rem;
+  }
+}
+
+/* Responsive Navbar */
+.navbar {
+  width: 100%;
+  background: var(--color-glass);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background 0.2s;
+  min-height: 72px;
+}
+
+.nav-content {
+  min-height: 72px;
+  padding: 0 2rem;
+}
+
+@media (max-width: 900px) {
+  .nav-content {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    min-height: 56px;
+  }
+  .nav-content {
+    min-height: 56px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0.5rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+  .order-now-btn {
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Responsive Grids */
+.catalog-page .product-card,
+.materials-page .product-card {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .catalog-page .product-card,
+  .materials-page .product-card {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-page .product-card,
+  .materials-page .product-card {
+    min-width: 0;
+    width: 100%;
+    padding: 1rem !important;
+  }
+}
+
+/* Responsive Tables (Materials) */
+.materials-page table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.materials-page th,
+.materials-page td {
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .materials-page table {
+    font-size: 0.9rem;
+  }
+  .materials-page th,
+  .materials-page td {
+    padding: 0.5rem !important;
+  }
+}
+
+/* Responsive Footer */
+footer > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  footer > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  footer > div {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive Forms */
+input,
+textarea,
+select,
+button {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1rem;
+    padding: 0.7rem !important;
+  }
+}
+
+/* Responsive Headings */
+h1,
+h2,
+h3,
+h4 {
+  word-break: break-word;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.2rem !important;
   }
 }

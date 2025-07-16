@@ -77,11 +77,34 @@ function Navbar({ scrollY }) {
 
   return (
     <nav className={`navbar ${scrollY > 100 ? 'navbar-visible' : ''}`}>
-      <div className="nav-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Link to="/" className="nav-title" style={{ textDecoration: 'none' }}>KEBAB'S PRINTBED</Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginLeft: 'auto' }}>
-          <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            <Link to="/">Home</Link>
+      <div className="nav-content" style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        padding: '0 1rem',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        width: '100%'
+      }}>
+        <Link to="/" className="nav-title" style={{ 
+          textDecoration: 'none',
+          fontSize: 'clamp(1.2rem, 4vw, 1.5rem)'
+        }}>
+          KEBAB'S PRINTBED
+        </Link>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 'clamp(0.5rem, 2vw, 2rem)', 
+          marginLeft: 'auto' 
+        }}>
+          <div className="nav-links" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 'clamp(0.5rem, 2vw, 2rem)',
+            flexWrap: 'wrap'
+          }}>
+            <Link to="/" style={{ fontSize: 'clamp(0.8rem, 3vw, 1rem)' }}>Home</Link>
             <button 
               onClick={() => handleSectionClick('about')}
               style={{ 
@@ -89,7 +112,7 @@ function Navbar({ scrollY }) {
                 border: 'none', 
                 color: 'inherit', 
                 cursor: 'pointer', 
-                fontSize: 'inherit',
+                fontSize: 'clamp(0.8rem, 3vw, 1rem)',
                 fontFamily: 'inherit',
                 padding: 0,
                 textDecoration: 'none'
@@ -104,7 +127,7 @@ function Navbar({ scrollY }) {
                 border: 'none', 
                 color: 'inherit', 
                 cursor: 'pointer', 
-                fontSize: 'inherit',
+                fontSize: 'clamp(0.8rem, 3vw, 1rem)',
                 fontFamily: 'inherit',
                 padding: 0,
                 textDecoration: 'none'
@@ -112,12 +135,24 @@ function Navbar({ scrollY }) {
             >
               Services
             </button>
-            <Link to="/catalog">Catalog</Link>
-            <Link to="/materials">Materials</Link>
-            <Link to="/about-us">About Us</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/catalog" style={{ fontSize: 'clamp(0.8rem, 3vw, 1rem)' }}>Catalog</Link>
+            <Link to="/materials" style={{ fontSize: 'clamp(0.8rem, 3vw, 1rem)' }}>Materials</Link>
+            <Link to="/about-us" style={{ fontSize: 'clamp(0.8rem, 3vw, 1rem)' }}>About Us</Link>
+            <Link to="/contact" style={{ fontSize: 'clamp(0.8rem, 3vw, 1rem)' }}>Contact</Link>
           </div>
-          <Link to="/order" className="order-now-btn" style={{ marginLeft: '2rem', padding: '0.6rem 1.4rem', borderRadius: 8, background: 'var(--color-accent)', color: 'var(--color-bg)', fontWeight: 700, fontSize: 16, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'background 0.2s' }}>
+          <Link to="/order" className="order-now-btn" style={{ 
+            marginLeft: 'clamp(0.5rem, 2vw, 2rem)', 
+            padding: 'clamp(0.4rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1.4rem)', 
+            borderRadius: 8, 
+            background: 'var(--color-accent)', 
+            color: 'var(--color-bg)', 
+            fontWeight: 700, 
+            fontSize: 'clamp(0.8rem, 3vw, 1rem)', 
+            textDecoration: 'none', 
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)', 
+            transition: 'background 0.2s',
+            whiteSpace: 'nowrap'
+          }}>
             Order Now
           </Link>
         </div>
