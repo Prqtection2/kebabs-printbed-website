@@ -113,6 +113,7 @@ function Navbar({ scrollY }) {
               Services
             </button>
             <Link to="/catalog">Catalog</Link>
+            <Link to="/materials">Materials</Link>
             <Link to="/about-us">About Us</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -1004,6 +1005,214 @@ function ProductDetail() {
   );
 }
 
+function Materials() {
+  const commonMaterials = [
+    {
+      name: 'PLA',
+      description: 'Polylactic Acid - Biodegradable, easy to print, great for beginners',
+      properties: ['Biodegradable', 'Easy to print', 'Good surface finish', 'Low warping'],
+      colors: ['White', 'Black', 'Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Pink', 'Gray', 'Brown', 'Clear'],
+      price: 'Starting at $20/kg'
+    },
+    {
+      name: 'ABS',
+      description: 'Acrylonitrile Butadiene Styrene - Strong, durable, heat resistant',
+      properties: ['High strength', 'Heat resistant', 'Durable', 'Good impact resistance'],
+      colors: ['White', 'Black', 'Red', 'Blue', 'Green', 'Yellow', 'Gray', 'Orange'],
+      price: 'Starting at $25/kg'
+    },
+    {
+      name: 'PETG',
+      description: 'Polyethylene Terephthalate Glycol - Strong, flexible, food safe',
+      properties: ['Food safe', 'Strong', 'Flexible', 'Good layer adhesion'],
+      colors: ['Clear', 'White', 'Black', 'Blue', 'Green', 'Red', 'Yellow', 'Gray'],
+      price: 'Starting at $30/kg'
+    },
+    {
+      name: 'TPU',
+      description: 'Thermoplastic Polyurethane - Flexible, rubber-like material',
+      properties: ['Flexible', 'Rubber-like', 'Good impact resistance', 'Wear resistant'],
+      colors: ['Black', 'White', 'Red', 'Blue', 'Green', 'Yellow', 'Clear'],
+      price: 'Starting at $35/kg'
+    }
+  ];
+
+  const specialMaterials = [
+    {
+      name: 'Carbon Fiber',
+      description: 'Carbon fiber reinforced - Ultra strong and lightweight',
+      properties: ['Ultra strong', 'Lightweight', 'High stiffness', 'Professional finish'],
+      colors: ['Black', 'Gray'],
+      price: 'Starting at $80/kg'
+    },
+    {
+      name: 'Metal Fill',
+      description: 'Metal particles mixed with plastic - Metallic appearance and feel',
+      properties: ['Metallic finish', 'Heavy feel', 'Professional look', 'Post-processing required'],
+      colors: ['Bronze', 'Copper', 'Steel', 'Aluminum'],
+      price: 'Starting at $60/kg'
+    },
+    {
+      name: 'Glow in the Dark',
+      description: 'Phosphorescent material - Glows in the dark after light exposure',
+      properties: ['Glows in dark', 'Fun effects', 'Good for decorations', 'Requires light charging'],
+      colors: ['Green', 'Blue', 'White', 'Yellow'],
+      price: 'Starting at $40/kg'
+    },
+    {
+      name: 'Wood Fill',
+      description: 'Wood particles mixed with plastic - Natural wood appearance',
+      properties: ['Wood-like finish', 'Natural appearance', 'Can be sanded', 'Paintable'],
+      colors: ['Brown', 'Light brown', 'Dark brown', 'Beige'],
+      price: 'Starting at $45/kg'
+    },
+    {
+      name: 'Conductive',
+      description: 'Electrically conductive material - For electronic projects',
+      properties: ['Electrically conductive', 'Good for electronics', 'Specialized use', 'Professional applications'],
+      colors: ['Black', 'Gray'],
+      price: 'Starting at $100/kg'
+    },
+    {
+      name: 'Dissolvable Support',
+      description: 'Water-soluble support material - Easy post-processing',
+      properties: ['Water soluble', 'Easy cleanup', 'Smooth surfaces', 'Complex geometries'],
+      colors: ['White', 'Clear'],
+      price: 'Starting at $50/kg'
+    }
+  ];
+
+  return (
+    <div className="materials-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Navbar scrollY={101} />
+      <div style={{ paddingTop: '120px', paddingBottom: '60px', maxWidth: 1200, margin: '0 auto', flex: 1 }}>
+        <h1 style={{ 
+          fontFamily: 'Koulen, cursive', 
+          fontSize: '3rem', 
+          color: 'var(--color-highlight)', 
+          textAlign: 'center',
+          marginBottom: '3rem' 
+        }}>
+          Available Materials
+        </h1>
+
+        {/* Common Materials Section */}
+        <section style={{ marginBottom: '4rem' }}>
+          <h2 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            fontSize: '2.5rem', 
+            color: 'var(--color-accent)', 
+            marginBottom: '2rem',
+            textAlign: 'center'
+          }}>
+            Common Materials
+          </h2>
+          <div style={{
+            background: 'var(--color-glass)',
+            border: '1px solid var(--color-glass-border)',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
+          }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr style={{ background: 'var(--color-accent)', color: 'var(--color-bg)' }}>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Material</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Description</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Key Properties</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Colors</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {commonMaterials.map((material, index) => (
+                  <tr key={index} style={{ 
+                    borderBottom: '1px solid var(--color-glass-border)',
+                    background: index % 2 === 0 ? 'var(--color-glass)' : 'rgba(255,255,255,0.02)'
+                  }}>
+                    <td style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--color-highlight)' }}>
+                      {material.name}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem' }}>
+                      {material.description}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem' }}>
+                      {material.properties.join(', ')}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem', fontStyle: 'italic' }}>
+                      {material.colors.join(', ')}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-highlight)', fontWeight: 'bold' }}>
+                      {material.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Special Materials Section */}
+        <section>
+          <h2 style={{ 
+            fontFamily: 'Koulen, cursive', 
+            fontSize: '2.5rem', 
+            color: 'var(--color-accent)', 
+            marginBottom: '2rem',
+            textAlign: 'center'
+          }}>
+            Special Materials
+          </h2>
+          <div style={{
+            background: 'var(--color-glass)',
+            border: '1px solid var(--color-glass-border)',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
+          }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr style={{ background: 'var(--color-accent)', color: 'var(--color-bg)' }}>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Material</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Description</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Key Properties</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Colors</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '1.1rem', fontWeight: 'bold' }}>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {specialMaterials.map((material, index) => (
+                  <tr key={index} style={{ 
+                    borderBottom: '1px solid var(--color-glass-border)',
+                    background: index % 2 === 0 ? 'var(--color-glass)' : 'rgba(255,255,255,0.02)'
+                  }}>
+                    <td style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--color-highlight)' }}>
+                      {material.name}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem' }}>
+                      {material.description}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem' }}>
+                      {material.properties.join(', ')}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-text)', fontSize: '0.9rem', fontStyle: 'italic' }}>
+                      {material.colors.join(', ')}
+                    </td>
+                    <td style={{ padding: '1rem', color: 'var(--color-highlight)', fontWeight: 'bold' }}>
+                      {material.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
 function MainApp() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -1159,6 +1368,7 @@ export default function App() {
         <Route path="/order" element={<OrderNow />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/materials" element={<Materials />} />
       </Routes>
     </Router>
   );
