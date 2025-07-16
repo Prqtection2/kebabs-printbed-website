@@ -162,6 +162,40 @@ function Navbar({ scrollY }) {
 }
 
 function Footer() {
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [newsletterError, setNewsletterError] = useState(null);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setNewsletterError(null);
+    
+    try {
+      const res = await fetch('https://formspree.io/f/mqabwrro', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: newsletterEmail,
+          subject: 'Newsletter Signup',
+          message: 'New newsletter subscription from website'
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      });
+      
+      if (res.ok) {
+        setNewsletterSubmitted(true);
+        setNewsletterEmail('');
+        setTimeout(() => setNewsletterSubmitted(false), 3000);
+      } else {
+        setNewsletterError('Something went wrong. Please try again.');
+      }
+    } catch {
+      setNewsletterError('Something went wrong. Please try again.');
+    }
+  };
+
   return (
     <footer style={{
       background: 'var(--color-glass)',
@@ -277,34 +311,59 @@ function Footer() {
           <p style={{ color: 'var(--color-text)', marginBottom: '1rem' }}>
             Subscribe to our newsletter for updates and special offers!
           </p>
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <input 
-              type="email" 
-              placeholder="Enter your email"
-              style={{
-                padding: '0.5rem',
-                borderRadius: '8px',
-                border: '1px solid var(--color-glass-border)',
-                background: 'var(--color-glass)',
-                color: 'var(--color-text)',
-                width: '100%'
-              }}
-            />
-            <button 
-              type="submit"
-              style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '8px',
-                border: 'none',
-                background: 'var(--color-accent)',
-                color: 'var(--color-bg)',
-                cursor: 'pointer',
-                width: '100%'
-              }}
-            >
-              Subscribe
-            </button>
-          </form>
+          {newsletterSubmitted ? (
+            <div style={{ 
+              color: 'var(--color-highlight)', 
+              fontSize: '0.9rem', 
+              padding: '0.5rem',
+              background: 'rgba(0,255,0,0.1)',
+              borderRadius: '8px',
+              textAlign: 'center'
+            }}>
+              Thank you for subscribing!
+            </div>
+          ) : (
+            <form onSubmit={handleNewsletterSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <input 
+                type="email" 
+                placeholder="Enter your email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                required
+                style={{
+                  padding: '0.5rem',
+                  borderRadius: '8px',
+                  border: '1px solid var(--color-glass-border)',
+                  background: 'var(--color-glass)',
+                  color: 'var(--color-text)',
+                  width: '100%'
+                }}
+              />
+              <button 
+                type="submit"
+                style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'var(--color-accent)',
+                  color: 'var(--color-bg)',
+                  cursor: 'pointer',
+                  width: '100%'
+                }}
+              >
+                Subscribe
+              </button>
+              {newsletterError && (
+                <div style={{ 
+                  color: 'var(--color-danger)', 
+                  fontSize: '0.8rem', 
+                  textAlign: 'center' 
+                }}>
+                  {newsletterError}
+                </div>
+              )}
+            </form>
+          )}
         </div>
       </div>
 
